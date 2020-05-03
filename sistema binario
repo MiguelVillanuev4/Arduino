@@ -1,0 +1,47 @@
+int estado=0;
+int estadoA=0;
+int salida=0;
+
+void setup()
+{
+  pinMode(8, INPUT);
+  pinMode(3, OUTPUT);
+  pinMode(4, OUTPUT);
+}
+
+void loop()
+{
+  int estado=digitalRead(8);
+  
+  if(estado != estadoA)
+    {
+    if(estado==LOW)
+    	{
+    	salida++;
+      	if(salida>4)
+        	salida=1;
+    	}
+    }
+  estadoA=estado;
+    
+  if(salida==1)
+   {
+    digitalWrite(3, HIGH);
+   	digitalWrite(4, LOW);	
+   }
+  else if(salida==2)
+  	{
+   	digitalWrite(4, HIGH);
+   	digitalWrite(3, LOW);	
+  	}
+  else if(salida==3)
+  {
+   	digitalWrite(3, HIGH);
+   	digitalWrite(4, HIGH);	
+  }
+  else
+  {
+   	digitalWrite(3, LOW);
+   	digitalWrite(4, LOW);	
+  }  
+ }
